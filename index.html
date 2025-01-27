@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - System Hacked</title>
+    <title>404 - System Trolled</title>
     <style>
         body {
             background-color: #000;
@@ -12,6 +12,7 @@
             text-align: center;
             padding: 20px;
             overflow: hidden;
+            position: relative;
         }
 
         .container {
@@ -42,6 +43,7 @@
             position: relative;
             margin: 20px auto;
             max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
         .terminal::before {
@@ -114,27 +116,107 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+
+        .meme-image {
+            position: fixed;
+            top: 100%;
+            right: 20%;
+            width: 300px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .meme-image:hover {
+            opacity: 1;
+        }
+
+        .ascii-art {
+            position: fixed;
+            bottom: 20%;
+            left: 20%;
+            font-size: 1em;
+            color: #0f0;
+            text-align: left;
+            white-space: pre-wrap;
+            animation: scroll 10s infinite linear;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100vw); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .troll-text {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.8em;
+            text-align: center;
+            color: #00ff00;
+            animation: shake 2s infinite;
+        }
+
+        @keyframes shake {
+            from { transform: translateX(0); }
+            to { transform: translateX(-10px); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="hacker-text">SYSTEM BREACHED</h1>
+        <h1 class="hacker-text">SYSTEM TROLLED</h1>
+        
         <div class="terminal">
             <div class="message">
-                <span class="error">Your computer is now part of a botnet</span><br>
-                <span>All your files have been encrypted with strongest AES-256</span><br>
-                <span>You've been initiated into the Dark Web</span><br>
-                <span>Your Wi-Fi password has been changed to "password123"</span><br>
-                <span>Don't worry, it's temporary. Or maybe not.</span>
+                <span class="error">Your computer has been trolled by the Internet</span><br>
+                <span>All your files have been replaced with cat pictures</span><br>
+                <span>Your Wi-Fi name has been changed to "Free Wi-Fi Zone"</span><br>
+                <span>Don't worry, it's just a meme. Or maybe not.</span>
             </div>
         </div>
+
+        <img src="https://placehold.co/400x200" alt="Meme image" class="meme-image hidden">
+        
+        <div class="ascii-art" id="asciiArt"></div>
     </div>
 
     <script>
-        // Add some terminal sounds
-        const audio = new Audio('data:audio/wav;base64,UklGRl9vAAAKAAAAIAAAACAAAABBAAEAQB8AAEAfAAABAAgAZGF0YU');
-        audio.play();
+        // Random ASCII art generator
+        function generateAsciiArt() {
+            const characters = '!@#$%^&*()';
+            const length = 50;
+            let div = document.getElementById('asciiArt');
+            
+            for (let i = 0; i < length; i++) {
+                const line = document.createElement('div');
+                line.className = 'ascii-art-line';
+                
+                for (let j = 0; j < length; j++) {
+                    line.innerHTML += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                
+                div.appendChild(line);
+            }
+        }
+
+        // Generate ASCII art on load
+        window.onload = generateAsciiArt;
+
+        // Show/hide meme image on hover
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('meme-image')) {
+                e.target.classList.remove('hidden');
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.classList.contains('meme-image')) {
+                e.target.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>
-
