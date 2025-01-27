@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - System Trolled</title>
+    <title>404 - System Trolled by Cats</title>
     <style>
         body {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #888;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 20px;
             overflow: hidden;
@@ -136,7 +136,7 @@
             bottom: 20%;
             left: 20%;
             font-size: 1em;
-            color: #0f0;
+            color: #888;
             text-align: left;
             white-space: pre-wrap;
             animation: scroll 10s infinite linear;
@@ -163,17 +163,27 @@
             from { transform: translateX(0); }
             to { transform: translateX(-10px); }
         }
+
+        .cat-image {
+            position: fixed;
+            opacity: 0.5;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cat-image:hover {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="hacker-text">SYSTEM TROLLED</h1>
+        <h1 class="hacker-text">SYSTEM TROLLED BY CATS</h1>
         
         <div class="terminal">
             <div class="message">
-                <span class="error">Your computer has been trolled by the Internet</span><br>
+                <span class="error">Your computer has been trolled by cats</span><br>
                 <span>All your files have been replaced with cat pictures</span><br>
-                <span>Your Wi-Fi name has been changed to "Free Wi-Fi Zone"</span><br>
+                <span>Your Wi-Fi name has been changed to "Free Cat Zone"</span><br>
                 <span>Don't worry, it's just a meme. Or maybe not.</span>
             </div>
         </div>
@@ -216,6 +226,34 @@
             if (e.target.classList.contains('meme-image')) {
                 e.target.classList.add('hidden');
             }
+        });
+
+        // Add floating cat images
+        const cats = [
+            'https://placehold.co/100x100',
+            'https://placehold.co/200x200',
+            'https://placehold.co/300x300'
+        ];
+
+        cats.forEach((catUrl, index) => {
+            const img = document.createElement('img');
+            img.src = catUrl;
+            img.className = `cat-image cat-${index}`;
+            img.style.left = `${Math.random() * 80 + 20}%`;
+            img.style.top = `${Math.random() * 80 + 20}%`;
+            img.style.opacity = '0.5';
+            document.body.appendChild(img);
+
+            // Make cats interactive
+            img.addEventListener('click', function() {
+                this.style.transform = `scale(${1.2 + Math.random() * 0.4})`;
+                setTimeout(() => {
+                    this.style.transform = 'translate(10px)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 500);
+                }, 100);
+            });
         });
     </script>
 </body>
